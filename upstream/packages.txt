@@ -30,6 +30,7 @@ ganglia DEFAULT SF-DEFAULT
 gifsicle DEFAULT http://www.lcdf.org/gifsicle/
 git git-([0-9.]*?).tar.gz GOOGLE-DEFAULT:git-core
 htop DEFAULT SF-DEFAULT
+httping DEFAULT http://www.vanheusden.com/httping/
 icinga DEFAULT SF-DEFAULT
 icinga-web DEFAULT http://sourceforge.net/projects/icinga/files/icinga-web/
 iftop DEFAULT http://www.ex-parrot.com/~pdw/iftop/download/
