@@ -14,6 +14,7 @@ chkrootkit DEFAULT ftp://ftp.pangeia.com.br/pub/seg/pac/
 clamav DEFAULT SF-DEFAULT
 clusterssh DEFAULT SF-DEFAULT
 crossroads DEFAULT http://crossroads.e-tunity.com/downloads/versions/
+cstream DEFAULT http://www.cons.org/cracauer/download/
 denyhosts DEFAULT SF-DEFAULT
 discount DEFAULT http://www.pell.portland.or.us/~orc/Code/discount/
 dnsmasq DEFAULT http://www.thekelleys.org.uk/dnsmasq/
