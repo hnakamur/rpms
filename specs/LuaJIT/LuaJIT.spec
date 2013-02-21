@@ -1,6 +1,6 @@
 Name:		LuaJIT
-Summary:	A Just-In-Time Compiler for Lua
-Version:	2.0.0
+Summary:	a Just-In-Time Compiler for Lua
+Version:	2.0.1
 Release:	1%{?dist}
 License:	MIT
 Group:		Development/Languages
@@ -38,28 +38,36 @@ make PREFIX=%{_prefix}
 make install DESTDIR=%{buildroot} PREFIX=%{_prefix} \
   INSTALL_LIB=%{buildroot}%{_libdir}
 
+mkdir -p $RPM_BUILD_ROOT/etc/ld.so.conf.d
+echo %{_libdir} > $RPM_BUILD_ROOT/etc/ld.so.conf.d/%{name}-%{version}.conf
+
 %clean
 [ -n "%{buildroot}" -a "%{buildroot}" != / ] && rm -rf %{buildroot}
 [ -d $RPM_BUILD_DIR/%{name}-%{version} ] && rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 
-%post devel -p /sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun devel -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr (-,root,root)
 %attr(0755,root,root) %{_bindir}/luajit
-%attr(0755,root,root) %{_bindir}/luajit-2.0.0
-%attr(0644,root,root) %{_datarootdir}/luajit-2.0.0/jit/*.lua
+%attr(0755,root,root) %{_bindir}/luajit-2.0.1
+%attr(0644,root,root) %{_libdir}/libluajit-5.1.so*
+%attr(0644,root,root) %{_datarootdir}/luajit-2.0.1/jit/*.lua
 %attr(0644,root,root) %{_mandir}/man1/luajit.1*
+%attr(0644,root,root) %{_sysconfdir}/ld.so.conf.d/%{name}-%{version}.conf
 
 %files devel
 %defattr (-,root,root)
 %attr(0644,root,root) %{_includedir}/luajit-2.0/*
-%attr(0644,root,root) %{_libdir}/libluajit-5.1.so*
 %attr(0644,root,root) %{_libdir}/libluajit-5.1.a
 %attr(0644,root,root) %{_libdir}/pkgconfig/luajit.pc
 
 %changelog
-* Tue Feb 12 2013 Hiroaki Nakamura <hnakamur@gmail.com> 2.0.0-1
+* Thu Feb 21 2013 Hiroaki Nakamura <hnakamur@gmail.com> 2.0.1-1
+- New upstream release 2.0.1
+* Wed Jan 23 2013 Hiroaki Nakamura <hnakamur@gmail.com> 2.0.0-2
+- Change prefix to /usr.
+* Tue Jan 22 2013 Hiroaki Nakamura <hnakamur@gmail.com> 2.0.0-1
 - Initial version.
